@@ -30,8 +30,6 @@ public class MainController {
     private final ObjectWriter shoppingListsWriter;
     private final ObjectWriter itemsWriter;
     private final ObjectWriter profileWriter;
-    @Value("${spring.profiles.active:prod}")
-    private String profile;
 
 
     @Autowired
