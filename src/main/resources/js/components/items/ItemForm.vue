@@ -4,14 +4,17 @@
             <v-text-field
                     placeholder="Что?"
                     v-model="name"
+                    :rules="[rules.required]"
             />
             <v-text-field
                     placeholder="Сколько?"
                     v-model="count"
+                    :rules="[rules.numbers]"
             />
             <v-text-field
                     placeholder="Цена за шт?"
                     v-model="price"
+                    :rules="[rules.numbers]"
             />
             <v-btn
                     @click="addNewItem(listId)"
@@ -32,8 +35,16 @@
             return {
                 id: null,
                 name: '',
-                count: null,
-                price: null,
+                count: 1,
+                price: 0,
+                rules: {
+                    required: value => !!value || 'Нельзя купить \"ничего\"',
+                    numbers: value => {
+                        const pattern = /^[0-9]+$/
+                        return pattern.test(value) || 'Только цифры'
+                    }
+                },
+                true: true
             }
         },
         watch: {
@@ -47,6 +58,13 @@
         methods: {
             ...mapActions(['addItemAction', 'updateItemAction']),
             addNewItem(listId) {
+                const pattern = /^[0-9]+$/
+                if (this.name === '' ||
+                    !pattern.test(this.count) ||
+                    !pattern.test(this.price)
+                ) {
+                    return
+                }
                 const item = {
                     id: this.id,
                     name: this.name,
@@ -66,8 +84,8 @@
 
                 this.id = null
                 this.name = ''
-                this.count = null
-                this.price = null
+                this.count = 1
+                this.price = 0
             }
         }
     }

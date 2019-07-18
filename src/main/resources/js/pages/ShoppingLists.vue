@@ -51,7 +51,7 @@
 <script>
     import { mapGetters } from 'vuex'
     import { mapActions } from 'vuex'
-    import ShoppingListForm from 'components/ShoppingListForm.vue'
+    import ShoppingListForm from 'components/ShoppingLists/ShoppingListForm.vue'
 
     export default {
         components: {ShoppingListForm},
@@ -69,7 +69,7 @@
             totalCost(list) {
                 var total = 0
                 for (var i = 0; i < list.items.length; i++) {
-                    total += list.items[i].item.price
+                    total += list.items[i].item.price * list.items[i].item.count
                 }
                 return total
             },

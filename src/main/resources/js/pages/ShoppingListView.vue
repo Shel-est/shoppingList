@@ -27,8 +27,8 @@
 
 <script>
     import { mapGetters } from 'vuex'
-    import ItemView from 'components/ItemView.vue'
-    import ItemForm from 'components/ItemForm.vue'
+    import ItemView from 'components/items/ItemView.vue'
+    import ItemForm from 'components/items/ItemForm.vue'
 
     export default {
         data() {

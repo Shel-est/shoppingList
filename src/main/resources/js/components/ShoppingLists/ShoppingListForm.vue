@@ -5,6 +5,7 @@
                 <v-text-field
                         placeholder="Название списка"
                         v-model="name"
+                        :rules="[rules.required]"
                 />
             </v-flex>
             <v-flex xs12 sm6>
@@ -73,7 +74,10 @@
                 modal: false,
                 deadline: new Date().toISOString().substr(0, 10),
                 periods: ['Каждый день', 'Каждую неделю', 'Каждый месяц'],
-                str: ''
+                str: 'Каждый день',
+                rules: {
+                    required: value => !!value || 'Ну хотя бы \"Список 1\"'
+                }
             }
         },
         watch: {
@@ -99,6 +103,10 @@
                 }
             },
             addNewList() {
+                if (this.name === '') {
+                    return
+                }
+
                 const list = {
                     id: this.id,
                     name: this.name,

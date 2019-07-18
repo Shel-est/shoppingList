@@ -7,7 +7,7 @@
             ></v-checkbox>
             <v-container align-left>{{this.item.name}}</v-container>
             <v-container align-right>{{this.item.count}}</v-container>
-            <v-container align-right>Цена = {{this.item.price}}</v-container>
+            <v-container align-right>Цена = {{this.item.price * this.item.count}}</v-container>
             <v-btn
                     align-righ
                     icon
